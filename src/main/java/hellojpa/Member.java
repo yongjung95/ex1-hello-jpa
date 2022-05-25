@@ -1,26 +1,42 @@
 package hellojpa;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 public class Member {
 
-    @Id
+    @Id @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "USERNAME")
     private String username;
 
-    private Integer age;
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
+    public Long getId() {
+        return id;
+    }
 
-    private LocalDateTime createdDate;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    private LocalDateTime lastModifiedDate;
+    public String getUsername() {
+        return username;
+    }
 
-    @Lob
-    private String description;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 }
