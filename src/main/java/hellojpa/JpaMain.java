@@ -15,6 +15,17 @@ public class JpaMain {
         tx.begin();
 
         try {
+
+            Member member = new Member();
+            member.setUsername("용정");
+            em.persist(member);
+
+            Locker locker = new Locker();
+            locker.setName("용정이 락커");
+            locker.setMember(member);
+
+            em.persist(locker);
+
             tx.commit();
         }catch (Exception e){
             tx.rollback();
