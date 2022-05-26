@@ -16,15 +16,20 @@ public class JpaMain {
 
         try {
 
-            Member member = new Member();
-            member.setUsername("용정");
-            em.persist(member);
+            Movie movie = new Movie();
+            movie.setDirector("AAAA");
+            movie.setActor("BBBB");
+            movie.setName("용정이짱");
+            movie.setPrice(10000);
 
-            Locker locker = new Locker();
-            locker.setName("용정이 락커");
-            locker.setMember(member);
+            System.out.println(movie.getId());
 
-            em.persist(locker);
+            em.persist(movie);
+
+            em.flush();
+            em.clear();
+
+            System.out.println(movie.getId());
 
             tx.commit();
         }catch (Exception e){
